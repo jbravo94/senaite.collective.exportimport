@@ -1,0 +1,45 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:cmf="http://namespaces.zope.org/cmf"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <five:registerPackage package="." initialize=".initialize"/>
+
+  <browser:page
+    for="zope.interface.Interface"
+    name="@@exportimport"
+    class="senaite.collective.exportimport.CollectiveExportContent"
+    permission="senaite.core.permissons.ManageBika"
+    layer="bika.lims.interfaces.IBikaLIMS"
+  />
+
+  <!-- Default profile -->
+  <genericsetup:registerProfile
+    name="default"
+    title="SENAITE COLLECTIVE EXPORT IMPORT"
+    directory="profiles/default"
+    description="Installs SENAITE COLLECTIVE EXPORT IMPORT"
+    pre_handler=".setuphandlers.pre_install"
+    post_handler=".setuphandlers.post_install"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <!-- Generic Setup Handler -->
+  <genericsetup:importStep
+    name="senaite.patient.setup_handler"
+    title="SENAITE COLLECTIVE EXPORT IMPORT: Setup Handler"
+    description="Run various configuration actions"
+    handler=".setuphandlers.setup_handler">
+  </genericsetup:importStep>
+
+  <!-- Uninstall profile -->
+  <genericsetup:registerProfile
+    name="uninstall"
+    title="SENAITE COLLECTIVE EXPORT IMPORT (uninstall)"
+    directory="profiles/uninstall"
+    description="Uninstalls SENAITE COLLECTIVE EXPORT IMPORT"
+    post_handler=".setuphandlers.post_uninstall"
+    provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+</configure>

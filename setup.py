@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-version = "1.4.0"
+version = "1.0.0"
 
 with open("README.rst", "r") as fh:
     long_description = fh.read()
@@ -12,9 +12,9 @@ with open("docs/changelog.rst", "r") as fh:
     long_description += fh.read()
 
 setup(
-    name="senaite.patient",
+    name="senaite.collective.exportimport",
     version=version,
-    description="Patients handling for SENAITE",
+    description="collective.exportimport wrapper plugin for SENAITE",
     long_description=long_description,
     # long_description_content_type="text/markdown",
     # Get more strings from
@@ -26,9 +26,9 @@ setup(
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
     ],
     keywords=["senaite", "lims", "opensource"],
-    author="RIDING BYTES & NARALABS",
-    author_email="senaite@senaite.com",
-    url="https://github.com/senaite/senaite.patient",
+    author="Johannes Heinzl",
+    author_email="jh.heinzl@gmail.com",
+    url="https://github.com/jbravo94/senaite.collective.exportimport",
     license="GPLv2",
     packages=find_packages("src", exclude=["ez_setup"]),
     package_dir={"": "src"},
@@ -37,6 +37,7 @@ setup(
     zip_safe=False,
     install_requires=[
         "senaite.lims>=2.3.0",
+        "collective.exportimport>=1.10",
     ],
     extras_require={
         "test": [
