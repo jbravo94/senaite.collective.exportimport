@@ -10,7 +10,7 @@
       category="Products"
       condition_expr=""
       icon_expr=""
-      url_expr="string:${portal_url}/@@exportimport"
+      url_expr="string:${portal_url}/export_content"
       visible="True"
       i18n:domain="senaite.collective.exportimport"
       i18n:attributes="title">
