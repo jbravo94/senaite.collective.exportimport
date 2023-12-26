@@ -4,17 +4,17 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <configlet
-      title="Patient Settings"
-      action_id="senaite.patient"
-      appId="senaite.patient"
+      title="Generic Export Import"
+      action_id="senaite.collective.exportimport"
+      appId="senaite.collective.exportimport"
       category="Products"
       condition_expr=""
-      icon_expr="senaite_theme/icon/patient"
-      url_expr="string:${portal_url}/@@patient-controlpanel"
+      icon_expr=""
+      url_expr="string:${portal_url}/@@exportimport"
       visible="True"
-      i18n:domain="senaite.patient"
+      i18n:domain="senaite.collective.exportimport"
       i18n:attributes="title">
-    <permission>senaite.patient: Manage Bika</permission>
+    <permission>senaite.core: Manage Bika</permission>
   </configlet>
 
 </object>

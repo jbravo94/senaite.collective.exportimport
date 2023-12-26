@@ -1,0 +1,7 @@
+{
+     "name": "Senaite Collective Export Import",
+     "dockerComposeFile": "docker-compose.yml",
+     "service": "dev",
+     "workspaceFolder": "/root",
+     "shutdownAction": "stopCompose"
+}

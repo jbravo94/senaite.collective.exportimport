@@ -32,7 +32,7 @@ setup(
     license="GPLv2",
     packages=find_packages("src", exclude=["ez_setup"]),
     package_dir={"": "src"},
-    namespace_packages=["senaite"],
+    namespace_packages=["senaite", "senaite.collective"],
     include_package_data=True,
     zip_safe=False,
     install_requires=[

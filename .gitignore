@@ -80,3 +80,4 @@ package-lock.json
 
 # senaite sources
 src/senaite.*
+patient_org

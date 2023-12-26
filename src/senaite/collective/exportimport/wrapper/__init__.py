@@ -1,6 +1,6 @@
 from collective.exportimport.export_content import ExportContent
 
-class CustomExportContent(ExportContent):
+class CollectiveExportContent(ExportContent):
 
     QUERY = {
         'Document': {'review_state': ['published', 'pending']},

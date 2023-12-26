@@ -23,11 +23,8 @@ import logging
 from AccessControl.Permission import addPermission
 from AccessControl.SecurityInfo import ModuleSecurityInfo
 from bika.lims.api import get_request
-from senaite.patient import permissions
-from senaite.patient.config import DEFAULT_ROLES
-from senaite.patient.config import DEFAULT_TYPES
-from senaite.patient.config import PRODUCT_NAME
-from senaite.patient.interfaces import ISenaitePatientLayer
+from senaite.collective.exportimport.config import PRODUCT_NAME
+from senaite.collective.exportimport.interfaces import ISenaiteCollectiveExportImportLayer
 from zope.i18nmessageid import MessageFactory
 
 security = ModuleSecurityInfo("senaite.collective.exportimport")
@@ -42,7 +39,7 @@ def is_installed():
     """Returns whether the product is installed or not
     """
     request = get_request()
-    return ISenaitePatientLayer.providedBy(request)
+    return ISenaiteCollectiveExportImportLayer.providedBy(request)
 
 
 def check_installed(default_return):

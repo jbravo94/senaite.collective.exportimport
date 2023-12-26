@@ -3,7 +3,7 @@
   available when this add-on is installed
 -->
 <layers>
-  <layer name="senaite.patient"
-         interface="senaite.patient.interfaces.ISenaitePatientLayer" />
+  <layer name="senaite.collective.exportimport"
+         interface="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer" />
 </layers>
 
