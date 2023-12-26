@@ -8,11 +8,13 @@
 
   <five:registerPackage package="." initialize=".initialize"/>
 
+  <include package="senaite.core.permissions" />
+
   <browser:page
     for="zope.interface.Interface"
     name="export_content"
     class="senaite.collective.exportimport.wrapper.CollectiveExportContent"
-    permission="cmf.ManagePortal"
+    permission="senaite.core.permissions.ManageBika"
     layer="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer"
   />
 
