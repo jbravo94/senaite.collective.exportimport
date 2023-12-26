@@ -40,18 +40,6 @@ def setup_handler(context):
     logger.info("{} setup handler [DONE]".format(PRODUCT_NAME.upper()))
 
 
-def pre_install(portal_setup):
-    """Runs before the first import step of the *default* profile
-    This handler is registered as a *pre_handler* in the generic setup profile
-    :param portal_setup: SetupTool
-    """
-    logger.info("{} pre-install handler [BEGIN]".format(PRODUCT_NAME.upper()))
-    context = portal_setup._getImportContext(PROFILE_ID)  # noqa
-    portal = context.getSite()  # noqa
-
-    logger.info("{} pre-install handler [DONE]".format(PRODUCT_NAME.upper()))
-
-
 def post_install(portal_setup):
     """Runs after the last import step of the *default* profile
     This handler is registered as a *post_handler* in the generic setup profile

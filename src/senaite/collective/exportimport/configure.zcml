@@ -10,10 +10,10 @@
 
   <browser:page
     for="zope.interface.Interface"
-    name="@@exportimport"
+    name="export_content"
     class="senaite.collective.exportimport.wrapper.CollectiveExportContent"
-    permission="senaite.core.permissons.ManageBika"
-    layer="bika.lims.interfaces.IBikaLIMS"
+    permission="cmf.ManagePortal"
+    layer="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer"
   />
 
   <!-- Default profile -->
@@ -22,7 +22,6 @@
     title="SENAITE COLLECTIVE EXPORT IMPORT"
     directory="profiles/default"
     description="Installs SENAITE COLLECTIVE EXPORT IMPORT"
-    pre_handler=".setuphandlers.pre_install"
     post_handler=".setuphandlers.post_install"
     provides="Products.GenericSetup.interfaces.EXTENSION" />
 

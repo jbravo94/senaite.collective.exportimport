@@ -4,6 +4,5 @@ include *.md
 exclude MANIFEST.in
 recursive-include docs *
 recursive-include static *
-recursive-include src/senaite/patient *
-recursive-exclude src/senaite/patient *.pyc
-recursive-exclude src/senaite/patient/locales/.tx *
+recursive-include src/senaite/collective/exportimport *
+recursive-exclude src/senaite/collective/exportimport *.pyc
