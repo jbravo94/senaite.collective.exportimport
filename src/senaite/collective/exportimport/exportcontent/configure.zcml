@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+  <browser:page
+    for="zope.interface.Interface"
+    name="export_content"
+    class="senaite.collective.exportimport.exportcontent.CollectiveExportContent"
+    permission="cmf.ManagePortal"
+    layer="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer"
+  />
+
+</configure>

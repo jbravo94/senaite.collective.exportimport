@@ -2,18 +2,27 @@ from collective.exportimport.export_content import ExportContent
 
 class CollectiveExportContent(ExportContent):
 
+    """
     QUERY = {
         'Document': {'review_state': ['published', 'pending']},
     }
+    """
+    QUERY = {}
 
+    """
     DROP_PATHS = [
         '/Plone/userportal',
         '/Plone/en/obsolete_content',
     ]
+    """
+    DROP_PATHS = []
 
+    """
     DROP_UIDS = [
         '71e3e0a6f06942fea36536fbed0f6c42',
     ]
+    """
+    DROP_UIDS = []
 
     def update(self):
         """Use this to override stuff before the export starts

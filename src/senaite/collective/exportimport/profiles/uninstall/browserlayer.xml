@@ -2,8 +2,8 @@
 <layers>
 
   <!-- Remove Browser Layer -->
-  <layer name="senaite.patient"
-         interface="senaite.patient.interfaces.ISenaitePatientLayer"
+  <layer name="senaite.collective.exportimport"
+         interface="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer"
          remove="True" />
 
 </layers>
