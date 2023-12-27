@@ -3,11 +3,13 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone">
 
+  <include package="bika.lims" file="permissions.zcml" />
+
   <browser:page
     for="zope.interface.Interface"
     name="export_content"
     class="senaite.collective.exportimport.exportcontent.CollectiveExportContent"
-    permission="cmf.ManagePortal"
+    permission="senaite.core.permissions.ManageBika"
     layer="senaite.collective.exportimport.interfaces.ISenaiteCollectiveExportImportLayer"
   />
 
