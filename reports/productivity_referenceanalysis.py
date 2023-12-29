@@ -27,6 +27,9 @@ from bika.lims.utils import formatDateQuery, formatDateParms, logged_in_client
 from plone.app.layout.globals.interfaces import IViewView
 from senaite.core.workflow import ANALYSIS_WORKFLOW
 from zope.interface import implements
+import csv
+from six import StringIO
+import datetime
 
 
 class Report(BrowserView):
@@ -42,7 +45,8 @@ class Report(BrowserView):
         # get all the data into datalines
         sc = getToolByName(self.context, 'senaite_catalog_setup')
         bac = getToolByName(self.context, 'senaite_catalog_analysis')
-
+        rc = getToolByName(self.context, 'reference_catalog')
+        
         self.report_content = {}
         parms = []
         headings = {}
@@ -65,31 +69,61 @@ class Report(BrowserView):
         if not self.request.form.get("getInstrumentUID", ""):
             return
 
-        query["getInstrumentUID"] = self.request.form["getInstrumentUID"]
+        instrumentUID = self.request.form["getInstrumentUID"]
+        instrumentObject = rc.lookupObject(instrumentUID)
+        instrumentTitle = instrumentObject.Title()
+
+        query["getInstrumentUID"] = instrumentUID
 
         datalines = []
        
         analyses = bac(query)
         count_analyses = len(analyses)
 
-        dataline = []
-        dataitem = {'value': self.request.form["getInstrumentUID"]}
-        dataline.append(dataitem)
-        dataitem = {'value': count_analyses}
+        for a in analyses:
 
-        dataline.append(dataitem)
+            # http://localhost:8080/senaite/senaite_catalog_analysis/manage_objectInformation
 
-        datalines.append(dataline)
+            #created
+            #getResultCaptureDate
+            #review_state verified
+            #getReferenceAnalysesGroupID
+            #getReferenceResults
+            #getParentURL
+            #getResult
+            #getKeyword
 
-        count_all += count_analyses
+            dataline = []
 
-        import csv
-        from six import StringIO
-        import datetime
+            dataitem = {'value': a.getReferenceAnalysesGroupID}
+            dataline.append(dataitem)
+            
+            dataitem = {'value': a.getKeyword}
+            dataline.append(dataitem)
+
+            date = ""
+
+            if a.getResultCaptureDate is not None:
+                date = a.getResultCaptureDate.strftime("%Y-%m-%d %H:%M:%S")
+
+            dataitem = {'value': date}
+            dataline.append(dataitem)
+
+            dataitem = {'value': a.getResult}
+            dataline.append(dataitem)
+
+            dataitem = {'value': a.review_state}
+            dataline.append(dataitem)
+
+            datalines.append(dataline)
+     
 
         fieldnames = [
-            'Sample Type',
-            'Analyses',
+            'Reference Analyses Group ID',
+            'Keyword',
+            'Result Capture Date',
+            'Result',
+            'Review State'
         ]
         output = StringIO()
         dw = csv.DictWriter(output, extrasaction='ignore',
@@ -97,8 +131,11 @@ class Report(BrowserView):
         dw.writerow(dict((fn, fn) for fn in fieldnames))
         for row in datalines:
             dw.writerow({
-                'Sample Type': row[0]['value'],
-                'Analyses': row[1]['value'],
+                'Reference Analyses Group ID': row[0]['value'],
+                'Keyword': row[1]['value'],
+                'Result Capture Date': row[2]['value'],
+                'Result': row[3]['value'],
+                'Review State': row[4]['value'],
             })
         report_data = output.getvalue()
         output.close()
@@ -106,6 +143,6 @@ class Report(BrowserView):
         setheader = self.request.RESPONSE.setHeader
         setheader('Content-Type', 'text/csv')
         setheader("Content-Disposition",
-                    "attachment;filename=\"referenceanalysis_%s.csv\"" % date)
+                    "attachment;filename=\"referenceanalysis_%s_%s.csv\"" % (instrumentTitle, date))
         self.request.RESPONSE.write(report_data)
 
