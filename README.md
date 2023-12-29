@@ -5,3 +5,5 @@
 
 # TO DO
 * Fix senaite permission in configure: lookup error
+
+eggs/senaite.core-2.4.1-py2.7.egg/bika/lims/browser/reports
